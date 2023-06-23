@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper>
+        <swiper :options="swiperOption">
             <swiper-slide v-for="(page,index) of pages" :key="index">
                 <div class="icon" v-for="item of page" :key="item.id">
                     <div class="icon-img">
@@ -16,56 +16,18 @@
 <script>
 export default {
     name: "HomeIcons",
-    data() {
+    props:['list'],
+    data(){
         return {
-            iconList: [
-                {
-                    id: 1001,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/hotel.png",
-                    desc: "酒店"
-                },
-                {
-                    id: 1002,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/flight.png",
-                    desc: "机票"
-                },
-                {
-                    id: 1003,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/train.png",
-                    desc: "火车票"
-                },
-                {
-                    id: 1004,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/package.png",
-                    desc: "度假"
-                },
-                {
-                    id: 1005,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/hotel.png",
-                    desc: "酒店"
-                },
-                {
-                    id: 1006,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/flight.png",
-                    desc: "机票"
-                },
-                {
-                    id: 1007,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/package.png",
-                    desc: "度假"
-                },
-                {
-                    id: 1008,
-                    imgUrl: "//s.qunarzz.com/homenode/images/touchheader/piao.png",
-                    desc: "周边游"
-                }
-            ]
+            swiperOption:{
+                autoplay:false
+            }
         }
     },
     computed:{
         pages(){
             const pages = [];
-            this.iconList.forEach((item, index) => {
+            this.list.forEach((item, index) => {
                 const page = Math.floor(index / 8);
                 if (!pages[page]) {
                     pages[page] = []

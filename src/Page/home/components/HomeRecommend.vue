@@ -2,7 +2,7 @@
     <div>
         <div class="recommend-title">热销推荐</div>
         <ul>
-            <li class="item border bottom" v-for="item of recommendList" :key="item.id">
+            <li class="item border bottom" v-for="item of list" :key="item.id">
                 <img class="item-img" :src="item.imgUrl">
                 <div class="item-info">
                     <p class="item-title">{{ item.title }}</p>
@@ -17,30 +17,7 @@
 <script>
 export default {
     name: 'HomeRecommend',
-    data() {
-        return {
-            recommendList: [
-                {
-                    id: "0001",
-                    imgUrl: "https://imgs.qunarzz.com/p/p7/201302/28/01484f7b0694f0f593835fbb.jpg_216x190_4d4bfe98.jpg",
-                    title: "新疆",
-                    desc: "体验异域风情"
-                },
-                {
-                    id: "0002",
-                    imgUrl: "https://imgs.qunarzz.com/p/p7/201302/28/01484f7b0694f0f593835fbb.jpg_216x190_4d4bfe98.jpg",
-                    title: "新疆",
-                    desc: "体验异域风情"
-                },
-                {
-                    id: "0003",
-                    imgUrl: "https://imgs.qunarzz.com/p/p7/201302/28/01484f7b0694f0f593835fbb.jpg_216x190_4d4bfe98.jpg",
-                    title: "新疆",
-                    desc: "体验异域风情"
-                }
-            ]
-        }
-    }
+    props:['list']
 }
 </script>
 

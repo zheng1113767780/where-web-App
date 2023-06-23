@@ -1,10 +1,10 @@
 <template>
     <div>
-        <top-header></top-header>
-        <swiper></swiper>
-        <home-icons></home-icons>
-        <home-recommend></home-recommend>
-        <home-weekend></home-weekend>
+        <top-header :city="city"></top-header>
+        <swiper :list="swiperList"></swiper>
+        <home-icons :list="iconList"></home-icons>
+        <home-recommend :list="recommendList"></home-recommend>
+        <home-weekend :list="weekendList"></home-weekend>
     </div>
 </template>
 
@@ -18,11 +18,26 @@ import TopHeader from './components/TopHeader.vue';
     export default {
         name:"HomePage",
         components:{TopHeader, Swiper, HomeIcons, HomeRecommend, HomeWeekend},
+        data(){
+            return {
+                city:"",
+                swiperList:[],
+                iconList:[],
+                recommendList:[],
+                weekendList:[]
+            }
+        },
         methods:{
             getHomeInfo(){
                 axios.get('mock/data.json')
                 .then(res=>{
-                    console.log(res.data);
+                    if(res.data.ret && res.data.data){
+                        this.city = res.data.data.city;
+                        this.swiperList = res.data.data.swiperList;
+                        this.iconList = res.data.data.iconList;
+                        this.recommendList = res.data.data.recommendList;
+                        this.weekendList = res.data.data.weekendList;
+                    }
                 })
             }
         },
