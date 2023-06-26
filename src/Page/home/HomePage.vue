@@ -17,7 +17,7 @@ import Swiper from './components/Swiper.vue';
 import TopHeader from './components/TopHeader.vue';
     export default {
         name:"HomePage",
-        components:{TopHeader, Swiper, HomeIcons, HomeRecommend, HomeWeekend},
+        components:{TopHeader, Swiper, HomeIcons, HomeRecommend, HomeWeekend },
         data(){
             return {
                 city:"",

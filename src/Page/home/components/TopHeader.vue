@@ -1,23 +1,26 @@
 <template>
     <div class=header>
         <div class="left">
-            <div class="iconfont back-icon" >&#xe61e;</div>
+            <div class="iconfont back-icon">&#xe61e;</div>
         </div>
         <div class="input">
             <span class="iconfont">&#xe604;</span>
             输入城市/景点/游玩主题
         </div>
-        <div class="right">
-            {{ this.city }}
-            <span class="iconfont arrow-icon">&#xe621;</span>
-        </div>
+        <router-link to="/city">
+            <div class="right">
+                {{ this.city }}
+                <span class="iconfont arrow-icon">&#xe621;</span>
+            </div>
+            <!-- <router-view></router-view> -->
+        </router-link>
     </div>
 </template>
 
 <script>
 export default {
     name: "TopHeader",
-    props:['city']
+    props: ['city'],
 }
 </script>
 
@@ -25,7 +28,7 @@ export default {
 @import '@/assets/style/varibles.styl';
 .header{
     display: flex
-    line-height:.86rem;
+    line-height:$headerHeight;
     background: $bgColor;
     color: #fff;
 }
@@ -52,6 +55,7 @@ export default {
     width :1.24rem;
     float: right
     text-align: center
+    color: #fff
 }
 .arrow-icon{
     margin-left: -0.1rem
