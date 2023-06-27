@@ -1,6 +1,6 @@
 <template>
     <div class="list" ref="wrapper">
-        <div>
+        <div class="content">
             <div class="area">
                 <div class="title border-topbottom">当前城市</div>
                 <div class="button-list">
@@ -17,10 +17,10 @@
                     </div>
                 </div>
             </div>
-            <div class="area" v-for="(items, key) of cities" :key="key">
+            <div class="area" v-for="(item, key) of cities" :key="key">
                 <div class="title border-topbottom">{{ key }}</div>
                 <div class="item-list">
-                    <div class="item border-bottom" v-for="innerItem of items" :key="innerItem.id">
+                    <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
                         {{ innerItem.name }}
                     </div>
                 </div>
@@ -30,12 +30,16 @@
 </template>
 
 <script>
-import Bscroll from 'better-scroll';
+import BScroll from 'better-scroll';
 export default {
     name: "CityList",
     props: ["cities", "hotCities"],
-    mounted() {
-        this.scroll = new Bscroll(this.$refs.wrapper)
+    created() {
+        this.$nextTick(() => {
+            this.scroll = new BScroll(this.$refs.wrapper, {
+                observeDOM:true
+            })
+        })
     }
 }
 </script>
@@ -57,6 +61,8 @@ export default {
  left: 0;
  right: 0;
  bottom: 0;
+//  .content
+//   height: 37000px;
 
  .title
   line-height: .54rem;

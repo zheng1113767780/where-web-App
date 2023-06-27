@@ -26,7 +26,7 @@ export default {
         getCityInfo() {
             axios.get("mock/city.json")
                 .then(res => {
-                    console.log(res.data.data.hotCities)
+                    // console.log(res.data.data.hotCities)
                     if (res.data.ret && res.data.data) {
                         const data = res.data.data;
                         this.cities = data.cities;
