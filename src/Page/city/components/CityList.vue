@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="area" v-for="(item, key) of cities" :key="key">
+            <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
                 <div class="title border-topbottom">{{ key }}</div>
                 <div class="item-list">
                     <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
@@ -33,13 +33,21 @@
 import BScroll from 'better-scroll';
 export default {
     name: "CityList",
-    props: ["cities", "hotCities"],
+    props: ["cities", "hotCities", "letter"],
     created() {
         this.$nextTick(() => {
             this.scroll = new BScroll(this.$refs.wrapper, {
-                observeDOM:true
+                observeDOM: true
             })
         })
+    },
+    watch: {
+        letter() {
+            if(this.letter){
+                const element = this.$refs[this.letter][0];
+                this.scroll.scrollToElement(element);
+            }
+        }
     }
 }
 </script>
@@ -61,9 +69,6 @@ export default {
  left: 0;
  right: 0;
  bottom: 0;
-//  .content
-//   height: 37000px;
-
  .title
   line-height: .54rem;
   background: #eee;
@@ -72,7 +77,7 @@ export default {
   font-size: .26rem;
  .button-list
   overflow: hidden;
-  padding:.1rem .6rem .1rem .1rem;
+  paddging:.1rem .6rem .1rem .1rem;
   .button-wraper
    float: left;
    width 33.33%;
