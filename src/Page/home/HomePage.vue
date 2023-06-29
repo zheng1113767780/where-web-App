@@ -1,6 +1,6 @@
 <template>
     <div>
-        <top-header :city="city"></top-header>
+        <top-header></top-header>
         <swiper :list="swiperList"></swiper>
         <home-icons :list="iconList"></home-icons>
         <home-recommend :list="recommendList"></home-recommend>
@@ -20,7 +20,6 @@ import TopHeader from './components/TopHeader.vue';
         components:{TopHeader, Swiper, HomeIcons, HomeRecommend, HomeWeekend },
         data(){
             return {
-                city:"",
                 swiperList:[],
                 iconList:[],
                 recommendList:[],
@@ -32,7 +31,6 @@ import TopHeader from './components/TopHeader.vue';
                 axios.get('mock/data.json')
                 .then(res=>{
                     if(res.data.ret && res.data.data){
-                        this.city = res.data.data.city;
                         this.swiperList = res.data.data.swiperList;
                         this.iconList = res.data.data.iconList;
                         this.recommendList = res.data.data.recommendList;

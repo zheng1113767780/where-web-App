@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import SwiperClass, { /* swiper modules... */ } from 'swiper'
+import store from './store'
 import '@/assets/style/reset.css'
 import '@/assets/style/border.css'
 import '@/assets/style/iconfont.css'
@@ -16,5 +17,6 @@ SwiperClass.use([/* swiper modules... */])
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
