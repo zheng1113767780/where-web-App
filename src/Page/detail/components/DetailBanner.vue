@@ -1,17 +1,40 @@
 <template>
-    <div class="banner">
-        <img class="banner-img" src="https://img1.qunarzz.com/p/tts1/1703/20/efe6ed87cf49a02.jpg_r_640x420x95_e8d994b8.jpg" alt="">
-        <div class="banner-info">
-            <div class="banner-title">青岛红树林度假世界</div>
-            <div class="banner-number"><span class="iconfont banner-icon">&#xe621;</span>39</div>
+    <div>
+        <div class="banner" @click="handleBannerClick">
+            <img class="banner-img"
+                src="https://img1.qunarzz.com/p/tts1/1703/20/efe6ed87cf49a02.jpg_r_640x420x95_e8d994b8.jpg" alt="">
+            <div class="banner-info">
+                <div class="banner-title">青岛红树林度假世界</div>
+                <div class="banner-number"><span class="iconfont banner-icon">&#xe622;</span>39</div>
+            </div>
         </div>
+        <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
     </div>
 </template>
 
 <script>
-    export default {
-        name:"DetailBanner"
+import CommonGallary from '@/common/gallary/CommonGallary.vue'
+export default {
+    components: { CommonGallary },
+    name: "DetailBanner",
+    data() {
+        return {
+            showGallary:false,
+            imgs: [
+                'https://img1.qunarzz.com/p/tts1/1703/20/efe6ed87cf49a02.jpg_r_1280x840x95_5be24d9c.jpg',
+                'https://img1.qunarzz.com/p/tts9/1803/25/6f18e5b3ae5b8102.jpg_r_1280x840x95_60375163.jpg'
+            ]
+        }
+    },
+    methods:{
+        handleBannerClick(){
+            this.showGallary = true;
+        },
+        handleGallaryClick(){
+            this.showGallary = false;
+        }
     }
+}
 </script>
 
 <style lang="stylus" scoped>

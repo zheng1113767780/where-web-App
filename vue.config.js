@@ -14,6 +14,11 @@ module.exports = defineConfig({
           }
         }
       }
+    },
+    resolve: {
+      alias: {
+        "common$": "src/common"
+      }
     }
   }
 })
