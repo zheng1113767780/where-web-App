@@ -15,19 +15,24 @@ import CityAlphabet from './components/CityAlphabet.vue'
 import CityHeader from './components/CityHeader.vue'
 import CityList from './components/CityList.vue'
 import CitySearch from './components/CitySearch.vue'
+import { mapState } from 'vuex';
 export default {
     components: { CityHeader, CitySearch, CityList, CityAlphabet },
     name: "HomeCity",
     data() {
         return {
+            lastCity:"",
             cities: {},
             hotCities: [],
             letter:""
         }
     },
+    computed:{
+        ...mapState(["city"])
+    },
     methods: {
         getCityInfo() {
-            axios.get("mock/city.json")
+            axios.get("mock/city.json?city=" +this.city)
                 .then(res => {
                     // console.log(res.data.data.hotCities)
                     if (res.data.ret && res.data.data) {
@@ -43,7 +48,14 @@ export default {
         }
     },
     mounted() {
+        this.lastCity = this.city
         this.getCityInfo();
+    },
+    activated () {
+        if(this.lastCity !== this.city) {
+            this.lastCity = this.city;
+            this.getCityInfo();
+        }
     }
 }
 </script>
