@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomePage from '@/Page/home/HomePage.vue'
 import Homecity from '@/Page/city/HomeCity.vue'
+import TiaoDetail from '@/Page/detail/TiaoDetail'
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes=[
             path: "/city",
             name: "City",
             component:Homecity
+        },
+        {
+            path:"/detail/:id",
+            name:"Detail",
+            component:TiaoDetail
         }
 ];
 const router = new VueRouter({
