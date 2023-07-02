@@ -2,13 +2,15 @@
     <div>
         <div class="banner" @click="handleBannerClick">
             <img class="banner-img"
-                src="https://img1.qunarzz.com/p/tts1/1703/20/efe6ed87cf49a02.jpg_r_640x420x95_e8d994b8.jpg" alt="">
+                :src="bannerImg" alt="">
             <div class="banner-info">
-                <div class="banner-title">青岛红树林度假世界</div>
-                <div class="banner-number"><span class="iconfont banner-icon">&#xe622;</span>39</div>
+                <div class="banner-title">{{ this.sightName }}</div>
+                <div class="banner-number"><span class="iconfont banner-icon">&#xe622;</span>
+                {{ this.bannerImgs.length }}
+                </div>
             </div>
         </div>
-        <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
+        <common-gallary :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
     </div>
 </template>
 
@@ -17,20 +19,20 @@ import CommonGallary from '@/common/gallary/CommonGallary.vue'
 export default {
     components: { CommonGallary },
     name: "DetailBanner",
+    props: ['sightName', 'bannerImg', 'bannerImgs'],
     data() {
         return {
-            showGallary:false,
+            showGallary: false,
             imgs: [
-                'https://img1.qunarzz.com/p/tts1/1703/20/efe6ed87cf49a02.jpg_r_1280x840x95_5be24d9c.jpg',
-                'https://img1.qunarzz.com/p/tts9/1803/25/6f18e5b3ae5b8102.jpg_r_1280x840x95_60375163.jpg'
+               
             ]
         }
     },
-    methods:{
-        handleBannerClick(){
+    methods: {
+        handleBannerClick() {
             this.showGallary = true;
         },
-        handleGallaryClick(){
+        handleGallaryClick() {
             this.showGallary = false;
         }
     }
