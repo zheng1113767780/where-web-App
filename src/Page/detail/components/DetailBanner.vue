@@ -1,30 +1,32 @@
 <template>
     <div>
         <div class="banner" @click="handleBannerClick">
-            <img class="banner-img"
-                :src="bannerImg" alt="">
+            <img class="banner-img" :src="bannerImg" alt="">
             <div class="banner-info">
                 <div class="banner-title">{{ this.sightName }}</div>
                 <div class="banner-number"><span class="iconfont banner-icon">&#xe622;</span>
-                {{ this.bannerImgs.length }}
+                    {{ this.bannerImgs.length }}
                 </div>
             </div>
         </div>
-        <common-gallary :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
+        <fade-animation>
+            <common-gallary :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
+        </fade-animation>
     </div>
 </template>
 
 <script>
 import CommonGallary from '@/common/gallary/CommonGallary.vue'
+import FadeAnimation from '@/common/fade/FadeAnimation.vue'
 export default {
-    components: { CommonGallary },
+    components: { CommonGallary, FadeAnimation},
     name: "DetailBanner",
     props: ['sightName', 'bannerImg', 'bannerImgs'],
     data() {
         return {
             showGallary: false,
             imgs: [
-               
+
             ]
         }
     },
